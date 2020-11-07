@@ -59,7 +59,7 @@ class Controller {
    */
   @GetMapping("/list")
   fun listAllUsers() = sequence {
-    val it = sqlite.executeQuery("SELECT * FROM users".also(::println))
+    val it = sqlite.executeQuery("SELECT * FROM users")
     while (it.next()) yield(User(
       it.getString("login"),
       it.getString("hash")

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация</title>
+  <style>
+    body {
+      text-align: center;
+    }
+    input {
+      font-size: large;
+    }
+    button {
+      font-size: large;
+    }
+  </style>
+</head>
+<body>
+<script>
+  function f() {
+
+  }
+</script>
+<form action="http://localhost:8080/register" method="get">
+  <label for="login"></label><input type="text" placeholder="логин" id="login" required>
+  <label for="hash"></label><input type="text" placeholder="пароль" id="hash" required>
+  <p>
+  <button onclick="f(document.forms[0].getel)" type="submit">зарегистрировать пользователя</button>
+</form>
+<a href="http://localhost:8080/list">Список зарегистрированных</a>
+</body>
+</html>
