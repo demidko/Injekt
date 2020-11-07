@@ -7,7 +7,6 @@
  */
 package cf.demidko
 
-import org.springframework.boot.SpringBootConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.jdbc.core.JdbcTemplate
@@ -68,17 +67,13 @@ class Controller {
  * и сам сможет найти и подцепить контроллер (вот для чего контроллеру нужны были аннтоации @)
  */
 @SpringBootApplication
-@SpringBootConfiguration
 open class Backend
+
 
 /**
  * Точка входа запускает бекенд
  */
 fun main() {
-
-  /**
-   * Запускаем бекенд
-   */
   runApplication<Backend>()
 }
 
