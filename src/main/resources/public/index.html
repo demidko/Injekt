@@ -23,11 +23,10 @@
 </head>
 <body>
 
-<form action='javascript:register()'>
-  <fieldset id="form">
-    <p>
-      <input type='text' placeholder='логин' id='login' required>
-      <input type='text' placeholder='пароль' id='password' required>
+<form id="form" action='javascript:register()'>
+  <fieldset id="fieldset">
+    <input type='text' placeholder='логин' id='login' required>
+    <input type='text' placeholder='пароль' id='password' required>
     <p>
       <button type='submit'>зарегистрироваться</button>
   </fieldset>
@@ -35,17 +34,19 @@
 
 <script>
   async function register() {
+    const fieldset = document.getElementById('fieldset')
     try {
+      fieldset.disabled = true
       const login = document.getElementById('login').value
       const password = document.getElementById('password').value
-      document.getElementById('form').setAttribute('disabled', true)
       const hash = await sha256sum(password)
       const response = await fetch(`${location.origin}/register?login=${login}&hash=${hash}`)
       alert(response.ok ? `Пользователь ${login} успешно зарегистрирован` : `Ошибка: ${response.statusText}`)
     } catch (e) {
       alert(e)
     } finally {
-      document.getElementById('form').setAttribute('disabled', false)
+      document.getElementById('form').reset()
+      fieldset.disabled = false
     }
   }
 
