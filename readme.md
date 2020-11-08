@@ -1,8 +1,6 @@
 ### Injekt - пример игрушечных SQL инъекций
 Представляет собой наносервис для регистрации пользователей с простым UI (и намеренно заложенными ошибками проектирования).
-
-#### Как запускать?
-1. Собираем self-executable jar:  
-`mvn clean package`
-1. И запускаем на выбранном порту:  
-`java -jar target/injekt-1.0-SNAPSHOT.jar –-server.port=80`
+#### Как собирать?
+* `mvn clean package`
+#### Как запускать? 
+* `java -jar target/injekt-1.0-SNAPSHOT.jar`
