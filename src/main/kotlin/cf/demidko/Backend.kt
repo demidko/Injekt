@@ -78,7 +78,7 @@ class Controller {
   private fun Statement.executeQueryForUsers(sql: String) = sequence {
     // Выполняем запрос и получаем найденные записи
     val resultSet = executeQuery(sql)
-    // Итерируемся по найденным записям и данные в список пользователей
+    // Итерируемся по ним сохраняя создавая список пользователей
     while (resultSet.next()) yield(User(
       resultSet.getString("login"),
       resultSet.getString("hash")
