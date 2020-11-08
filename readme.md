@@ -3,6 +3,6 @@
 
 #### Как запускать?
 1. Собираем self-executable jar:  
-`mvn package`
+`mvn clean package`
 1. И запускаем на выбранном порту:  
-`java -jar target/injekt-1.0-SNAPSHOT.jar –server.port=80`
+`java -jar target/injekt-1.0-SNAPSHOT.jar –-server.port=80`
