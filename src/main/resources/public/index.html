@@ -36,11 +36,10 @@
 
   async function api(method) {
     const response = await fetch(`${location.origin}/${method}`)
-    const json = await response.json()
     if (response.ok) {
-      return JSON.parse(json)
+      return response
     } else {
-      throw JSON.stringify(json, null, 2)
+      throw JSON.stringify(await response.json(), null, 2)
     }
   }
 
