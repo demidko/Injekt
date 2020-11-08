@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+  <meta charset='UTF-8'>
+  <title>Регистрация</title>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    input {
+      font-size: large;
+    }
+
+    button {
+      font-size: large;
+    }
+
+    a {
+      font-size: large;
+    }
+  </style>
+</head>
+<body>
+
+<form action="javascript:index()">
+  <p>
+    <input type='text' placeholder='логин' id='login' required>
+    <input type='text' placeholder='пароль' id='password' required>
+  <p>
+    <button type='submit'>зарегистрироваться</button>
+</form>
+
+<script>
+  async function register() {
+    let login = document.getElementById('login').value
+    let password = document.getElementById('password').value
+    let passwordBytes = new TextEncoder().encode(password)
+    let hashBuffer = await crypto.subtle.digest('SHA-256', passwordBytes)
+    let hash = String.fromCharCode.apply(null, new Uint8Array(hashBuffer))
+    try {
+      alert(await fetch(`${location.origin}/register?login=${login}&hash=${hash}`))
+    } catch (e) {
+      alert(e)
+    }
+  }
+</script>
+
+<a href="list">Список зарегистрированных</a>
+</body>
+</html>
