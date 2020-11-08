@@ -26,7 +26,7 @@
       await api(`register?login=${login}&hash=${hash}`)
       alert(`Пользователь ${login} успешно зарегистрирован`)
     } catch (e) {
-      alert(`${e}`)
+      alert(`Произошла ошибка. ${e}`)
     } finally {
       document.getElementById("form").reset()
       fieldset.disabled = false

@@ -58,7 +58,7 @@ class Controller {
   fun tryRegisterNewUser(@RequestParam login: String, @RequestParam hash: String) {
     val findCurrentUserSql = "SELECT * FROM users WHERE login = '$login'".also(log::info)
     if (sqlite.executeQueryForUsers(findCurrentUserSql).any()) {
-      throw ResponseStatusException(CONFLICT, "Пользователь '$login' уже существует")
+      throw ResponseStatusException(CONFLICT, "Пользователь '$login' уже существует!")
     }
     val insertCurrentUserSql = "INSERT INTO users(login, hash) VALUES ('$login', '$hash')".also(log::info)
     sqlite.execute(insertCurrentUserSql)
