@@ -99,7 +99,7 @@ open class Backend
  * Точка входа запускает бекенд
  */
 fun main(args: Array<String>) {
-  runApplication<Backend>(*args)
+  runApplication<Backend>(*args, "--server.error.include-message=always")
 }
 
 
