@@ -26,7 +26,7 @@
       await api(`register?login=${login}&hash=${hash}`)
       alert(`Пользователь ${login} успешно зарегистрирован`)
     } catch (e) {
-      alert(`Произошла ошибка!\n${e}`)
+      alert(`${e}`)
     } finally {
       document.getElementById("form").reset()
       fieldset.disabled = false
@@ -38,7 +38,7 @@
     if (response.ok) {
       return response
     } else {
-      throw JSON.parse(await response.json()).message
+      throw JSON.parse(JSON.stringify(await response.json())).message
     }
   }
 
