@@ -1,68 +1,55 @@
 <!DOCTYPE html>
-<html lang='ru'>
+<html lang="ru">
 <head>
-  <meta charset='UTF-8' name='viewport' content='width=device-width, initial-scale=1'>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
   <title>Регистрация</title>
-  <style>
-    body {
-      text-align: center;
-    }
-
-    input {
-      font-size: large;
-    }
-
-    button {
-      font-size: large;
-    }
-
-    a {
-      font-size: large;
-    }
-  </style>
 </head>
-<body>
-
-<form id="form" action='javascript:register()'>
-  <fieldset id="fieldset">
-    <input type='text' placeholder='логин' id='login' required>
-    <input type='text' placeholder='пароль' id='password' required>
+<body style="text-align: center">
+<form id="form" style="margin: 3%" action="javascript:register()">
+  <fieldset style="border: 0" id="fieldset">
+    <input style="font-size: large" type="text" placeholder="логин" id="login" required>
+    <input style="font-size: large" placeholder="пароль" id="password" required>
     <p>
-      <button type='submit'>зарегистрироваться</button>
+      <button style="font-size: large" type="submit">зарегистрироваться</button>
   </fieldset>
 </form>
 
+<a href="list" style="font-size: large">список зарегистрированных</a>
+
 <script>
   async function register() {
-    const fieldset = document.getElementById('fieldset')
+    const fieldset = document.getElementById("fieldset")
     try {
       fieldset.disabled = true
-      const login = document.getElementById('login').value
-      const password = document.getElementById('password').value
-      const hash = await sha256sum(password)
-      const response = await fetch(`${location.origin}/register?login=${login}&hash=${hash}`)
-      if (response.ok) {
-        alert(`Пользователь ${login} успешно зарегистрирован`)
-      } else {
-        const json = await response.json()
-        alert(`Произошла ошибка!\n${JSON.stringify(json)}`)
-      }
+      const login = document.getElementById("login").value
+      const password = document.getElementById("password").value
+      const hash = await sha256(password)
+      await api(`register?login=${login}&hash=${hash}`)
+      alert(`Пользователь ${login} успешно зарегистрирован`)
     } catch (e) {
-      alert(e)
+      alert(`Произошла ошибка!\n${e}`)
     } finally {
-      document.getElementById('form').reset()
+      document.getElementById("form").reset()
       fieldset.disabled = false
     }
   }
 
-  async function sha256sum(message) {
+  async function api(method) {
+    const response = await fetch(`${location.origin}/${method}`)
+    const json = await response.json()
+    if (response.ok) {
+      return JSON.parse(json)
+    } else {
+      throw JSON.stringify(json, null, 2)
+    }
+  }
+
+  async function sha256(message) {
     const msgUint8 = new TextEncoder().encode(message)
-    const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8)
+    const hashBuffer = await crypto.subtle.digest("SHA-256", msgUint8)
     const hashArray = Array.from(new Uint8Array(hashBuffer))
-    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join("")
   }
 </script>
-
-<a href='list'>список зарегистрированных</a>
 </body>
 </html>
