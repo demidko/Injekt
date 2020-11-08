@@ -13,10 +13,9 @@
       <button style="font-size: large" type="submit">зарегистрироваться</button>
   </fieldset>
 </form>
-
 <a href="list" style="font-size: large">список зарегистрированных</a>
-
 <script>
+
   async function register() {
     const fieldset = document.getElementById("fieldset")
     try {
@@ -50,6 +49,7 @@
     const hashArray = Array.from(new Uint8Array(hashBuffer))
     return hashArray.map(b => b.toString(16).padStart(2, '0')).join("")
   }
+
 </script>
 </body>
 </html>
