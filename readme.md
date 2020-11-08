@@ -4,5 +4,5 @@
 #### Как запускать из исходников?
 1. Собираем self-executable jar:  
 `mvn package` 
-1. И запускаем с нужным портом (по умолчанию 8080):    
+1. И запускаем на нужным порту:    
 `java -jar target/injekt-1.0-SNAPSHOT.jar –server.port=80`
